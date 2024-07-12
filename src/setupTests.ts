@@ -3,3 +3,21 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
+
+const originalConsole = global.console;
+
+global.console = {
+  ...global.console,
+
+  error: (...args) => {
+    if (
+      typeof args[0] === 'string' &&
+      args[0].includes('deprecated')
+    ) {
+      return true;
+    }
+
+    // Show the original error for everything else
+    originalConsole.error(...args);
+  },
+};

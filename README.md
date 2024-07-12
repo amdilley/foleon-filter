@@ -1,6 +1,22 @@
-# Getting Started with Create React App
+# Foleon Filter Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a react front end that allows users to search through projects with optional search text and category filters.
+
+## Design Decisions
+
+For ease of setup this application was created with `create-react-app` and modified thereafter. This provides the desired React + TypeScript + Jest out of the box with minimal additional configuration required. I would not use this for a production facing application as many of the configuration settings are obfuscated and restricted. For the purposes of this exercise though this should suffice.
+
+### API
+
+The Foleon API credentials are specified in a local `.env` file. In a production application these values would be processed by a backend server so the credentials wouldn't be exposed to the client. Again, for the sake of simplicity this step was skipped in this exercise.
+
+### Data Fetching
+
+To fetch and process the data from Foleon API, I decided to use the `swr` [library](https://swr.vercel.app/). From their documentation:
+
+> The name “SWR” is derived from stale-while-revalidate, a HTTP cache invalidation strategy popularized by [HTTP RFC 5861](https://tools.ietf.org/html/rfc5861). SWR is a strategy to first return the data from cache (stale), then send the fetch request (revalidate), and finally come with the up-to-date data.
+
+This library provides the simple, yet powerful `useSWR` react hook as well as some useful utility functions like `preload`. It is also agnostic of your fetching implementation which provides a lot of flexibility and customization.
 
 ## Available Scripts
 
@@ -17,7 +33,6 @@ You will also see any lint errors in the console.
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
 
@@ -26,21 +41,3 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
